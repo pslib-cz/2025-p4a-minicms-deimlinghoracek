@@ -36,7 +36,7 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: 'Clanek nenalezen',
+      title: 'Článek nenalezen',
     }
   }
 
@@ -97,7 +97,7 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
             <div className="flex flex-wrap gap-6 text-sm text-slate-500">
               <span>Autor: {article.author.name || article.author.email}</span>
               <time dateTime={article.publishDate.toISOString()}>
-                Publikovano{' '}
+                Publikováno{' '}
                 {new Intl.DateTimeFormat('cs-CZ', { dateStyle: 'long' }).format(article.publishDate)}
               </time>
             </div>

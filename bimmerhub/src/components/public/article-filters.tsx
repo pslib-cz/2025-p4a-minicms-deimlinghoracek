@@ -28,7 +28,7 @@ export function ArticleFilters({
           type="search"
           name="q"
           defaultValue={query}
-          placeholder="Hledat podle nazvu, perexu nebo obsahu"
+          placeholder="Hledat podle názvu, perexu nebo obsahu"
           className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-400"
         />
         <select
@@ -36,7 +36,7 @@ export function ArticleFilters({
           defaultValue={series ?? ''}
           className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-400"
         >
-          <option value="">Vsechny rady</option>
+          <option value="">Všechny řady</option>
           {seriesOptions.map((item) => (
             <option key={item.slug} value={item.slug}>
               {item.name} ({item.count})
@@ -48,7 +48,7 @@ export function ArticleFilters({
           defaultValue={tag ?? ''}
           className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-slate-400"
         >
-          <option value="">Vsechny tagy</option>
+          <option value="">Všechny tagy</option>
           {tagOptions.map((item) => (
             <option key={item.slug} value={item.slug}>
               {item.name} ({item.count})
@@ -65,7 +65,7 @@ export function ArticleFilters({
 
       <div className="mt-5 flex flex-wrap gap-3 text-sm">
         <Link href="/articles" className="rounded-full border border-slate-200 bg-white px-4 py-2 font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-950">
-          Reset filtru
+          Reset filtrů
         </Link>
         {seriesOptions.slice(0, 5).map((item) => (
           <Link

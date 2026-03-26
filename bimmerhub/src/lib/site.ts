@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: 'BimmerHub',
-  title: 'BimmerHub | BMW magazin a mini CMS',
+  title: 'BimmerHub | BMW magazín a mini CMS',
   description:
-    'Publikacni platforma zamerena na recenze BMW, servisni navody, kupni pruvodce a galerie modelovych rad.',
+    'Publikační platforma zaměřená na recenze BMW, servisní návody, kupní průvodce a galerie modelových řad.',
   locale: 'cs_CZ',
 }
 

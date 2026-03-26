@@ -52,7 +52,7 @@ export function DashboardArticles() {
         )
 
         if (!response.ok) {
-          throw new Error('Nepodarilo se nacist tvoje clanky.')
+          throw new Error('Nepodařilo se načíst tvoje články.')
         }
 
         const result = (await response.json()) as DashboardResponse
@@ -60,7 +60,7 @@ export function DashboardArticles() {
         setPage(result.page)
       } catch (caughtError) {
         setError(
-          caughtError instanceof Error ? caughtError.message : 'Neco se pokazilo pri nacitani.',
+          caughtError instanceof Error ? caughtError.message : 'Něco se pokazilo při načítání.',
         )
       } finally {
         setLoading(false)
@@ -74,7 +74,7 @@ export function DashboardArticles() {
   }, [loadArticles, status])
 
   async function handleDelete(id: string) {
-    const confirmed = window.confirm('Opravdu chces clanek smazat?')
+    const confirmed = window.confirm('Opravdu chceš článek smazat?')
 
     if (!confirmed) {
       return
@@ -85,7 +85,7 @@ export function DashboardArticles() {
     })
 
     if (!response.ok) {
-      setError('Clanek se nepodarilo smazat.')
+      setError('Článek se nepodařilo smazat.')
       return
     }
 
@@ -101,7 +101,7 @@ export function DashboardArticles() {
               Dashboard
             </p>
             <h1 className="text-3xl font-black tracking-tight text-slate-950">
-              Sprava vlastniho obsahu
+              Správa vlastního obsahu
             </h1>
           </div>
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -114,12 +114,12 @@ export function DashboardArticles() {
               className="min-w-[180px]"
               variant="bordered"
             >
-              <SelectItem key="ALL">Vsechno</SelectItem>
+              <SelectItem key="ALL">Vše</SelectItem>
               <SelectItem key={ArticleStatus.DRAFT}>Draft</SelectItem>
               <SelectItem key={ArticleStatus.PUBLISHED}>Published</SelectItem>
             </Select>
             <Button as={Link} href="/dashboard/articles/new" color="primary">
-              Novy clanek
+              Nový článek
             </Button>
           </div>
         </CardHeader>
@@ -193,7 +193,7 @@ export function DashboardArticles() {
                 ))}
               </div>
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-sm text-slate-500">Celkem {data.totalItems} clanku</p>
+                <p className="text-sm text-slate-500">Celkem {data.totalItems} článků</p>
                 <Pagination
                   page={page}
                   total={data.totalPages}
@@ -207,10 +207,10 @@ export function DashboardArticles() {
           ) : (
             <div className="rounded-[28px] border border-dashed border-slate-200 bg-slate-50/70 p-8 text-center">
               <h2 className="text-2xl font-black tracking-tight text-slate-950">
-                Zatim nemas zadny clanek
+                Zatím nemáš žádný článek
               </h2>
               <p className="mt-3 text-sm leading-7 text-slate-600">
-                Vytvor prvni recenzi, navod nebo kupni pruvodce a odesli ho pres vlastni API.
+                Vytvoř první recenzi, návod nebo kupní průvodce a odešli ho přes vlastní API.
               </p>
             </div>
           )}

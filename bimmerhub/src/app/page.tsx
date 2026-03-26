@@ -42,27 +42,27 @@ export default async function HomePage() {
         <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(circle_at_center,rgba(28,105,212,0.18),transparent_58%)] lg:block" />
         <div className="relative max-w-3xl space-y-6">
           <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-            Publikacni platforma pro fanousky BMW
+            Publikační platforma pro fanoušky BMW
           </div>
           <h1 className="max-w-2xl text-5xl font-black tracking-tight text-slate-950 sm:text-6xl">
-            Recenze, navody a editorial o autech z Mnichova.
+            Recenze, návody a editorial o autech z Mnichova.
           </h1>
           <p className="max-w-2xl text-lg leading-8 text-slate-600">
-            BimmerHub spojuje verejny magazin, vlastni dashboard a API. Uzivatele publikuji
-            vlastni obsah o modelovych radach BMW, servisu, kupnich tipech i galerii.
+            BimmerHub spojuje veřejný magazín, vlastní dashboard a API. Uživatelé publikují
+            vlastní obsah o modelových řadách BMW, servisu, kupních tipech i galerii.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/articles"
               className="rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--bmw-blue)]"
             >
-              Projit clanky
+              Projít články
             </Link>
             <Link
               href="/dashboard"
               className="rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-950"
             >
-              Otevrit dashboard
+              Otevřít dashboard
             </Link>
           </div>
         </div>
@@ -76,11 +76,11 @@ export default async function HomePage() {
                 Editorial feed
               </p>
               <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-                Nejctenejsi tema tydne
+                Nejčtenější téma týdne
               </h2>
             </div>
             <Link href="/articles" className="text-sm font-semibold text-[var(--bmw-blue)]">
-              Vsechny clanky
+              Všechny články
             </Link>
           </div>
           {featuredArticles[0] ? <ArticleCard article={featuredArticles[0]} /> : null}
@@ -88,10 +88,10 @@ export default async function HomePage() {
 
         <div className="surface-card rounded-[32px] p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-            Modelove rady
+            Modelové řady
           </p>
           <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-            Prozkoumej BMW podle rady
+            Prozkoumej BMW podle řady
           </h2>
           <div className="mt-6 space-y-3">
             {series.map((item) => (
@@ -115,10 +115,10 @@ export default async function HomePage() {
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-              Cerstve publikovano
+              Čerstvě publikováno
             </p>
             <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-              Posledni clanky z BimmerHubu
+              Poslední články z BimmerHubu
             </h2>
           </div>
         </div>

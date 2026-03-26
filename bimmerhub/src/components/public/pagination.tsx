@@ -32,7 +32,7 @@ export function Pagination({ page, totalPages, basePath, query }: PaginationProp
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1)
 
   return (
-    <nav className="flex flex-wrap items-center gap-2" aria-label="Strankovani">
+    <nav className="flex flex-wrap items-center gap-2" aria-label="Stránkování">
       <Link
         href={buildHref(basePath, query, Math.max(1, page - 1))}
         aria-disabled={page <= 1}
@@ -42,7 +42,7 @@ export function Pagination({ page, totalPages, basePath, query }: PaginationProp
             : 'border border-slate-200 bg-white text-slate-600 hover:text-slate-950'
         }`}
       >
-        Predchozi
+        Předchozí
       </Link>
 
       {pages.map((pageNumber) => (
@@ -68,7 +68,7 @@ export function Pagination({ page, totalPages, basePath, query }: PaginationProp
             : 'border border-slate-200 bg-white text-slate-600 hover:text-slate-950'
         }`}
       >
-        Dalsi
+        Další
       </Link>
     </nav>
   )

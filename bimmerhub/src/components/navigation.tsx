@@ -49,7 +49,7 @@ export function Navigation() {
             href="/articles"
             className="rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
           >
-            Clanky
+            Články
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -57,7 +57,7 @@ export function Navigation() {
             href="/series"
             className="rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
           >
-            Modelove rady
+            Modelové řady
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -66,7 +66,7 @@ export function Navigation() {
         {!session?.user ? (
           <NavbarItem>
             <Button as={Link} color="primary" href="/login" radius="full">
-              Prihlasit se
+              Přihlásit se
             </Button>
           </NavbarItem>
         ) : (
@@ -84,21 +84,21 @@ export function Navigation() {
             </DropdownTrigger>
             <DropdownMenu aria-label="Profil">
               <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold text-slate-500">Prihlasen jako</p>
+                <p className="font-semibold text-slate-500">Přihlášen jako</p>
                 <p className="font-semibold text-slate-950">{session.user.email}</p>
               </DropdownItem>
               <DropdownItem key="dashboard" as={Link} href="/dashboard">
                 Dashboard
               </DropdownItem>
               <DropdownItem key="new_article" as={Link} href="/dashboard/articles/new">
-                Novy clanek
+                Nový článek
               </DropdownItem>
               <DropdownItem
                 key="logout"
                 color="danger"
                 onPress={() => signOut({ callbackUrl: '/' })}
               >
-                Odhlasit
+                Odhlásit
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

@@ -5,8 +5,8 @@ import { ArticleStatus } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 
 export const metadata: Metadata = {
-  title: 'Modelove rady BMW',
-  description: 'Prehled modelovych rad BMW pouzitych pro kategorizaci publikovaneho obsahu.',
+  title: 'Modelové řady BMW',
+  description: 'Přehled modelových řad BMW použitých pro kategorizaci publikovaného obsahu.',
 }
 
 export const dynamic = 'force-dynamic'
@@ -32,11 +32,11 @@ export default async function SeriesPage() {
           Kategorizace
         </p>
         <h1 className="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
-          BMW modelove rady
+          BMW modelové řady
         </h1>
         <p className="max-w-3xl text-lg leading-8 text-slate-600">
-          Kazdy clanek je zarazen do konkretni modelove rady. Tahle sekce ukazuje prehled 1:N
-          vztahu mezi radou BMW a publikovanym obsahem.
+          Každý článek je zařazen do konkrétní modelové řady. Tato sekce ukazuje přehled 1:N
+          vztahu mezi řadou BMW a publikovaným obsahem.
         </p>
       </section>
 
@@ -48,12 +48,12 @@ export default async function SeriesPage() {
             className="surface-card rounded-[30px] p-7 transition hover:-translate-y-1"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-              {item._count.articles} publikovanych clanku
+              {item._count.articles} publikovaných článků
             </p>
             <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">{item.name}</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
             <span className="mt-6 inline-flex text-sm font-semibold text-[var(--bmw-blue)]">
-              Zobrazit clanky
+              Zobrazit články
             </span>
           </Link>
         ))}

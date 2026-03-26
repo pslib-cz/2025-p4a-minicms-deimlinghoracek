@@ -20,28 +20,28 @@ async function main() {
     {
       slug: '3-series',
       name: '3 Series',
-      description: 'Sportovni sedan a kombi, od E30 po soucasny G20.',
+      description: 'Sportovní sedan a kombi, od E30 po současný G20.',
       coverImage:
         'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=80',
     },
     {
       slug: '5-series',
       name: '5 Series',
-      description: 'Executive segment BMW s durazem na komfort, techniku a dlouhe trasy.',
+      description: 'Executive segment BMW s důrazem na komfort, techniku a dlouhé trasy.',
       coverImage:
         'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80',
     },
     {
       slug: 'm-models',
       name: 'M Models',
-      description: 'Vrcholne verze BMW M divize pro okruh i emocni svezeni.',
+      description: 'Vrcholné verze BMW M divize pro okruh i emoční svezení.',
       coverImage:
         'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=80',
     },
     {
       slug: 'x-series',
       name: 'X Series',
-      description: 'SUV a crossovery BMW od mestskeho X1 po velke rodinne X5.',
+      description: 'SUV a crossovery BMW od městského X1 po velké rodinné X5.',
       coverImage:
         'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=80',
     },
@@ -56,12 +56,12 @@ async function main() {
   }
 
   const tagData = [
-    { slug: 'review', name: 'Review', description: 'Jizdni dojmy a redakcni hodnoceni.' },
-    { slug: 'servis', name: 'Servis', description: 'Servisni a udrzbove postupy.' },
-    { slug: 'buyers-guide', name: 'Buyers Guide', description: 'Tipy pri vyberu ojetiny.' },
-    { slug: 'e46', name: 'E46', description: 'Generace E46 a jeji typicke vlastnosti.' },
-    { slug: 'xdrive', name: 'xDrive', description: 'Clanky zamerene na pohon vsech kol.' },
-    { slug: 'm-performance', name: 'M Performance', description: 'M divize a ostrejsi verze.' },
+    { slug: 'review', name: 'Review', description: 'Jízdní dojmy a redakční hodnocení.' },
+    { slug: 'servis', name: 'Servis', description: 'Servisní a údržbové postupy.' },
+    { slug: 'buyers-guide', name: 'Buyers Guide', description: 'Tipy při výběru ojetiny.' },
+    { slug: 'e46', name: 'E46', description: 'Generace E46 a její typické vlastnosti.' },
+    { slug: 'xdrive', name: 'xDrive', description: 'Články zaměřené na pohon všech kol.' },
+    { slug: 'm-performance', name: 'M Performance', description: 'M divize a ostřejší verze.' },
   ]
 
   for (const tag of tagData) {
@@ -100,65 +100,65 @@ async function main() {
   const articles = [
     {
       slug: 'bmw-e46-m3-ikona-analogove-radosti',
-      title: 'BMW E46 M3: ikona analogove radosti z rizeni',
+      title: 'BMW E46 M3: ikona analogové radosti z řízení',
       description:
-        'Proc je E46 M3 porad meritem pro ridice, kteri chteji atmosfericky sestivalec, presne rizeni a mechanicky cit.',
+        'Proč je E46 M3 pořád měřítkem pro řidiče, kteří chtějí atmosférický šestiválec, přesné řízení a mechanický cit.',
       content:
-        '<h2>Proc tenhle clanek vznikl</h2><p>E46 M3 je jedno z tech aut, ktere se v diskuzich o nejlepsich sportovnich BMW vraci porad dokola. Neni to jen vykonem, ale i tim, jak komunikuje s ridicem.</p><h2>Motor S54</h2><p>Atmosfericky radovy sestivalec se ochotne toci do vysokych otacek a dava autu charakter, ktery dnes uz hledame cim dal hur.</p><h2>Na co si dat pozor</h2><ul><li>Kontrola udrzby VANOSu</li><li>Stav zadni napravy a podlahy</li><li>Historie servisu a chladici soustavy</li></ul>',
+        '<h2>Proč tenhle článek vznikl</h2><p>E46 M3 je jedno z těch aut, které se v diskuzích o nejlepších sportovních BMW vrací pořád dokola. Není to jen výkonem, ale i tím, jak komunikuje s řidičem.</p><h2>Motor S54</h2><p>Atmosférický řadový šestiválec se ochotně točí do vysokých otáček a dává autu charakter, který dnes už hledáme čím dál hůř.</p><h2>Na co si dát pozor</h2><ul><li>Kontrola údržby VANOSu</li><li>Stav zadní nápravy a podlahy</li><li>Historie servisu a chladicí soustavy</li></ul>',
       imageUrl:
         'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=80',
       status: 'PUBLISHED' as const,
       publishDate: new Date('2026-03-20T09:00:00.000Z'),
-      seoTitle: 'BMW E46 M3 recenze a kupni tipy',
-      seoDescription: 'Recenze BMW E46 M3, charakter motoru S54 a hlavni body pri koupi.',
+      seoTitle: 'BMW E46 M3 recenze a kupní tipy',
+      seoDescription: 'Recenze BMW E46 M3, charakter motoru S54 a hlavní body při koupi.',
       seriesId: seriesId('m-models'),
       tags: tagIds(['review', 'e46', 'm-performance']),
     },
     {
       slug: 'g20-330i-jako-idealni-daily-driver',
-      title: 'Je G20 330i idealni daily driver?',
+      title: 'Je G20 330i ideální daily driver?',
       description:
-        'Moderni trojka s motorem B48 umi byt rychla, komfortni i usporna. Podivali jsme se na ni jako na kazdodenni auto.',
+        'Moderní trojka s motorem B48 umí být rychlá, komfortní i úsporná. Podívali jsme se na ni jako na každodenní auto.',
       content:
-        '<h2>Kazdy den bez kompromisu</h2><p>G20 330i ukazuje, proc je rada 3 tak dulezita. V beznem provozu funguje kultivovane, ale kdyz potrebujes, umi byt prekvapive svizna.</p><h2>Technika a interier</h2><p>B48 patri mezi nejprijemnejsi moderni ctyrvalce BMW. Auto navic nabizi vybornou ergonomii a dospely podvozek.</p><h2>Komu bude sedet</h2><p>Ridici, kteri chteji jedno auto na dalnice, okresky i kazdodenni provoz.</p>',
+        '<h2>Každý den bez kompromisů</h2><p>G20 330i ukazuje, proč je řada 3 tak důležitá. V běžném provozu funguje kultivovaně, ale když potřebuješ, umí být překvapivě svižná.</p><h2>Technika a interiér</h2><p>B48 patří mezi nejpříjemnější moderní čtyřválce BMW. Auto navíc nabízí výbornou ergonomii a dospělý podvozek.</p><h2>Komu bude sedět</h2><p>Řidičům, kteří chtějí jedno auto na dálnice, okresky i každodenní provoz.</p>',
       imageUrl:
         'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=80',
       status: 'PUBLISHED' as const,
       publishDate: new Date('2026-03-22T08:30:00.000Z'),
       seoTitle: 'BMW G20 330i jako daily driver',
-      seoDescription: 'Prakticka recenze BMW G20 330i xDrive pro kazdodenni pouziti.',
+      seoDescription: 'Praktická recenze BMW G20 330i xDrive pro každodenní použití.',
       seriesId: seriesId('3-series'),
       tags: tagIds(['review', 'xdrive']),
     },
     {
       slug: 'na-co-se-divat-pri-koupi-bmw-f10-530d',
-      title: 'Na co se divat pri koupi BMW F10 530d',
+      title: 'Na co se dívat při koupi BMW F10 530d',
       description:
-        'Kupni pruvodce pro F10 530d se seznamem castych slabin, servisnich bodu a rozumnych ocekavani.',
+        'Kupní průvodce pro F10 530d se seznamem častých slabin, servisních bodů a rozumných očekávání.',
       content:
-        '<h2>Proc prave F10 530d</h2><p>Petkova rada generace F10 umi byt vyborna na dlouhe trasy a stale pusobi hodnotne. Pri koupi je ale potreba hlidat technicky stav a historii.</p><h2>Kontrolni seznam</h2><ol><li>Historie olejovych intervalu</li><li>Stav automaticke prevodovky</li><li>Podvozek a pneumaticky komfortni prvky</li></ol><p>Dobre vybrane auto se umi odvdeci komfortem i nizkou spotrebou na dalnici.</p>',
+        '<h2>Proč právě F10 530d</h2><p>Pětková řada generace F10 umí být výborná na dlouhé trasy a stále působí hodnotně. Při koupi je ale potřeba hlídat technický stav a historii.</p><h2>Kontrolní seznam</h2><ol><li>Historie olejových intervalů</li><li>Stav automatické převodovky</li><li>Podvozek a pneumatické komfortní prvky</li></ol><p>Dobře vybrané auto se umí odvděčit komfortem i nízkou spotřebou na dálnici.</p>',
       imageUrl:
         'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80',
       status: 'PUBLISHED' as const,
       publishDate: new Date('2026-03-24T10:00:00.000Z'),
-      seoTitle: 'BMW F10 530d: kupni pruvodce',
-      seoDescription: 'Kontrolni seznam a rady pri vyberu BMW F10 530d.',
+      seoTitle: 'BMW F10 530d: kupní průvodce',
+      seoDescription: 'Kontrolní seznam a rady při výběru BMW F10 530d.',
       seriesId: seriesId('5-series'),
       tags: tagIds(['buyers-guide', 'servis']),
     },
     {
       slug: 'jak-na-vymenu-kotoucu-u-bmw-g30',
-      title: 'Jak na vymenu prednich kotoucu u BMW G30',
+      title: 'Jak na výměnu předních kotoučů u BMW G30',
       description:
-        'Servisni navod krok za krokem pro vymenu prednich brzdovych kotoucu a desticek u BMW rady 5.',
+        'Servisní návod krok za krokem pro výměnu předních brzdových kotoučů a destiček u BMW řady 5.',
       content:
-        '<h2>Priprava</h2><p>Pred zacatkem si priprav spravne momenty dotazeni, nove srouby a zakladni diagnostiku. Bezpecnost a cistota prace jsou zaklad.</p><h2>Postup</h2><ol><li>Zvednout vuz a sundat kola</li><li>Demontovat trmen a drzak</li><li>Ocistit dosedaci plochu naboje</li><li>Namontovat nove kotouce i desticky</li></ol><p>Po vymene nezapomen na zabeh a kontrolu brzdove kapaliny.</p>',
+        '<h2>Příprava</h2><p>Před začátkem si připrav správné momenty dotažení, nové šrouby a základní diagnostiku. Bezpečnost a čistota práce jsou základ.</p><h2>Postup</h2><ol><li>Zvednout vůz a sundat kola</li><li>Demontovat třmen a držák</li><li>Očistit dosedací plochu náboje</li><li>Namontovat nové kotouče i destičky</li></ol><p>Po výměně nezapomeň na záběh a kontrolu brzdové kapaliny.</p>',
       imageUrl:
         'https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=1400&q=80',
       status: 'DRAFT' as const,
       publishDate: new Date('2026-03-28T07:00:00.000Z'),
-      seoTitle: 'Vymena prednich kotoucu u BMW G30',
-      seoDescription: 'Prakticky servisni navod pro vymenu prednich brzd na BMW G30.',
+      seoTitle: 'Výměna předních kotoučů u BMW G30',
+      seoDescription: 'Praktický servisní návod pro výměnu předních brzd na BMW G30.',
       seriesId: seriesId('5-series'),
       tags: tagIds(['servis']),
     },

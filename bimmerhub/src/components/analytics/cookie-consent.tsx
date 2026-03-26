@@ -31,11 +31,11 @@ export function CookieConsent() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-            Analytics consent
+            Souhlas s analytickými cookies
           </p>
           <p className="mt-2 text-sm leading-7 text-slate-600">
-            BimmerHub muze po souhlasu zapnout Google Analytics pro zaznamenani pageview.
-            Kdyz sledovani odmitnes, aplikace zustane plne funkcni a nic se nebude nacitat.
+            BimmerHub může po souhlasu zapnout Google Analytics pro zaznamenání pageview.
+            Když sledování odmítneš, aplikace zůstane plně funkční a nic se nebude načítat.
           </p>
         </div>
         <div className="flex gap-3">
@@ -44,7 +44,7 @@ export function CookieConsent() {
             onClick={() => saveDecision('denied')}
             className="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300"
           >
-            Odmitnout
+            Odmítnout
           </button>
           <button
             type="button"

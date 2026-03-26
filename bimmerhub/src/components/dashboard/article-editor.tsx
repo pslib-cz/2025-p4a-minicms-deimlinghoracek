@@ -32,7 +32,7 @@ type FormState = {
 }
 
 const initialContent =
-  '<h2>Uvod</h2><p>Sem napis uvod ke clanku o BMW. Popis jizdnich dojmu, techniky a praktickych zkusenosti.</p>'
+  '<h2>Úvod</h2><p>Sem napiš úvod ke článku o BMW. Popis jízdních dojmů, techniky a praktických zkušeností.</p>'
 
 const initialFormState: FormState = {
   title: '',
@@ -68,7 +68,7 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
         ])
 
         if (!metaResponse.ok) {
-          throw new Error('Nepodarilo se nacist metadata formulare.')
+          throw new Error('Nepodařilo se načíst metadata formuláře.')
         }
 
         const metaData: MetaResponse = await metaResponse.json()
@@ -76,7 +76,7 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
 
         if (articleResponse) {
           if (!articleResponse.ok) {
-            throw new Error('Nepodarilo se nacist clanek k editaci.')
+            throw new Error('Nepodařilo se načíst článek k editaci.')
           }
 
           const { article } = await articleResponse.json()
@@ -105,7 +105,7 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
         setError(
           caughtError instanceof Error
             ? caughtError.message
-            : 'Nepodarilo se pripravit formular.',
+            : 'Nepodařilo se připravit formulář.',
         )
       } finally {
         setLoading(false)
@@ -163,7 +163,7 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
         ? Object.values(fieldErrors).flat().find(Boolean)
         : undefined
 
-      setError(firstFieldError || data?.error || 'Ulozeni se nepodarilo.')
+      setError(firstFieldError || data?.error || 'Uložení se nepodařilo.')
       return
     }
 
@@ -184,10 +184,10 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
       <Card className="rounded-[32px] border border-slate-200 bg-white/90 shadow-xl shadow-slate-200/60">
         <CardHeader className="flex flex-col items-start gap-2 px-6 pt-6">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-            {articleId ? 'Editace clanku' : 'Novy clanek'}
+            {articleId ? 'Editace článku' : 'Nový článek'}
           </p>
           <h1 className="text-3xl font-black tracking-tight text-slate-950">
-            {articleId ? 'Upravit BMW obsah' : 'Vytvorit BMW clanek'}
+            {articleId ? 'Upravit BMW obsah' : 'Vytvořit BMW článek'}
           </h1>
         </CardHeader>
         <CardBody className="space-y-5 px-6 pb-6">
@@ -209,7 +209,7 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
             isRequired
           />
           <Textarea
-            label="Perex / description"
+            label="Perex / popis"
             value={form.description}
             onValueChange={(value) => updateField('description', value)}
             minRows={3}
@@ -217,14 +217,14 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
             isRequired
           />
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Obsah clanku</label>
+            <label className="text-sm font-semibold text-slate-700">Obsah článku</label>
             <RichTextEditor
               content={form.content}
               onChange={(value) => updateField('content', value)}
             />
           </div>
           <Input
-            label="Obrazek URL"
+            label="Obrázek URL"
             value={form.imageUrl}
             onValueChange={(value) => updateField('imageUrl', value)}
             variant="bordered"
@@ -272,7 +272,7 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
               isRequired
             />
             <Select
-              label="Modelova rada"
+              label="Modelová řada"
               selectedKeys={form.seriesId ? [form.seriesId] : []}
               onSelectionChange={(keys) => updateField('seriesId', String(Array.from(keys)[0] || ''))}
               variant="bordered"
@@ -286,7 +286,7 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
               label="Tagy"
               value={form.tags}
               onValueChange={(value) => updateField('tags', value)}
-              description={`Oddel carkou. Napoveda: ${tagSuggestions || 'review, servis, m-performance'}`}
+              description={`Odděl čárkou. Nápověda: ${tagSuggestions || 'review, servis, m-performance'}`}
               minRows={3}
               variant="bordered"
               isRequired
@@ -294,10 +294,10 @@ export function ArticleEditor({ articleId }: ArticleEditorProps) {
             {error ? <p className="text-sm font-medium text-danger">{error}</p> : null}
             <div className="flex gap-3">
               <Button color="primary" type="submit" isLoading={saving} className="flex-1">
-                {articleId ? 'Ulozit zmeny' : 'Vytvorit clanek'}
+                {articleId ? 'Uložit změny' : 'Vytvořit článek'}
               </Button>
               <Button variant="bordered" type="button" onPress={() => router.push('/dashboard')}>
-                Zpet
+                Zpět
               </Button>
             </div>
           </CardBody>

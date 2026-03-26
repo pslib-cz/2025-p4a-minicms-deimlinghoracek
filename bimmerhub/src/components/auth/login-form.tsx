@@ -10,8 +10,8 @@ export function LoginForm() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
 
-  const [email, setEmail] = useState('admin@bimmerhub.local')
-  const [password, setPassword] = useState('password123')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -30,7 +30,7 @@ export function LoginForm() {
     setLoading(false)
 
     if (result?.error) {
-      setError('Nepodarilo se prihlasit. Zkontroluj e-mail a heslo.')
+      setError('Nepodařilo se přihlásit. Zkontroluj e-mail a heslo.')
       return
     }
 
@@ -43,14 +43,14 @@ export function LoginForm() {
       <Card className="w-full max-w-lg rounded-[32px] border border-slate-200 bg-white/90 p-4 shadow-xl shadow-slate-200/60">
         <CardHeader className="flex flex-col items-start gap-3 px-6 pt-6">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-            Prihlaseni
+            Přihlášení
           </p>
           <h1 className="text-3xl font-black tracking-tight text-slate-950">
             Vstup do dashboardu
           </h1>
           <p className="text-sm leading-7 text-slate-600">
-            Pouzij demo ucet nebo vlastni prihlasovaci udaje. Dashboard i API jsou pristupne
-            pouze po overeni session.
+            Zadej své přihlašovací údaje. Dashboard i API jsou přístupné
+            pouze po ověření session.
           </p>
         </CardHeader>
         <CardBody className="px-6 pb-6">
@@ -73,11 +73,8 @@ export function LoginForm() {
             />
             {error ? <p className="text-sm font-medium text-danger">{error}</p> : null}
             <Button color="primary" type="submit" isLoading={loading} className="w-full">
-              Prihlasit se
+              Přihlásit se
             </Button>
-            <p className="text-xs text-slate-500">
-              Demo ucet: <strong>admin@bimmerhub.local</strong> / <strong>password123</strong>
-            </p>
           </form>
         </CardBody>
       </Card>

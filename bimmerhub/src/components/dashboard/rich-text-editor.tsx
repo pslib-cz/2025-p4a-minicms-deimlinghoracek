@@ -46,14 +46,14 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
           className={toolbarButtonClass}
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
-          Bold
+          Tučně
         </button>
         <button
           type="button"
           className={toolbarButtonClass}
           onClick={() => editor.chain().focus().toggleBulletList().run()}
         >
-          Odrzky
+          Odrážky
         </button>
         <button
           type="button"
