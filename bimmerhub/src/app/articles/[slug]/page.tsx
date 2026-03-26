@@ -70,7 +70,7 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
     <article className="space-y-8 pb-12">
       <section className="surface-card overflow-hidden rounded-[36px]">
         <div className="grid gap-8 p-8 lg:grid-cols-[1.2fr_0.8fr] lg:p-10">
-          <div className="space-y-6">
+          <div className="min-w-0 space-y-6">
             <div className="flex flex-wrap gap-2">
               <Link
                 href={`/articles?series=${article.series.slug}`}

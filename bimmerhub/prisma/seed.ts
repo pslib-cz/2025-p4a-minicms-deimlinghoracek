@@ -167,6 +167,22 @@ async function main() {
       seriesId: seriesId('5-series'),
       tags: tagIds(['servis']),
     },
+    {
+      slug: 'pavel-e46-prikop-a-znacka',
+      title: 'Jak šikula Pavel poslal E46 do příkopu a porazil značku',
+      description:
+        'Náš editor Pavel chtěl ukázat, že E46 zvládne všechno. E46 zvládlo příkop i dopravní značku. Pavel méně.',
+      content:
+        '<h2>Kontext pro nezasvěcené</h2><p>Pavel je náš redakční kolega, nadšenec do BMW a sebejistý řidič. Tedy — byl sebejistý. Teď už je hlavně pokorný. A taky pojišťovací expert na vlastní kůži.</p><h2>Co se vlastně stalo</h2><p>Představte si slunečné odpoledne, okresku za městem a Pavla za volantem svého milovaného E46 325i. „Tohle auto prostě drží," prohlásil Pavel přesně 4,7 sekundy předtím, než přestal držet on.</p><p>Zatáčka, kterou Pavel jezdil „stokrát", se tentokrát rozhodla být o trochu ostřejší. Nebo možná Pavel o trochu rychlejší. Výsledek? Klasický trojskok: silnice → příkop → značka označující konec obce.</p><h2>Bilance škod</h2><ul><li>Přední nárazník — odešel do věčných lovišť</li><li>Pravý blatník — získal nový, organický tvar</li><li>Značka „Konec obce" — technicky vzato splnila svůj účel naposledy</li><li>Pavlovo ego — totální ztráta, neopravitelné</li></ul><h2>Pavlova obhajoba</h2><p>„Byl tam štěrk." Nebyl tam štěrk. Kamery z auta to potvrdily. Na silnici nebylo nic kromě Pavlova přebytku sebevědomí.</p><h2>Poučení pro ostatní</h2><p>Když vám E46 říká „ještě to jde", neznamená to, že to jde i vám. Auto je legendární. Vy jste Pavel.</p><p>Mimochodem, značku obec nahradila do týdne. Pavlovo auto stálo v servisu měsíc. Takže skóre: obec 1, Pavel 0.</p>',
+      imageUrl:
+        'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=80',
+      status: 'PUBLISHED' as const,
+      publishDate: new Date('2026-03-26T12:00:00.000Z'),
+      seoTitle: 'Pavel vs. příkop a značka — příběh z redakce BimmerHubu',
+      seoDescription: 'Jak náš editor Pavel neplánovaně otestoval odolnost svého E46, příkopu a dopravní značky.',
+      seriesId: seriesId('3-series'),
+      tags: tagIds(['review', 'e46']),
+    },
   ]
 
   for (const article of articles) {

@@ -46,9 +46,9 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <GoogleAnalytics />
           </Suspense>
-          <div className="min-h-screen bg-shell text-slate-950">
+          <div className="min-h-screen overflow-x-hidden bg-shell text-slate-950">
             <Navigation />
-            <main className="mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-7xl flex-col px-4 py-8 sm:px-6 lg:px-8">
+            <main className="mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-7xl flex-col overflow-hidden px-4 py-8 sm:px-6 lg:px-8">
               {children}
             </main>
             <CookieConsent />

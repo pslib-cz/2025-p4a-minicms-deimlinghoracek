@@ -16,16 +16,20 @@
   --bmw-red: #d22d23;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(28, 105, 212, 0.08), transparent 30%),
     radial-gradient(circle at top right, rgba(210, 45, 35, 0.06), transparent 24%),
@@ -55,11 +59,14 @@ a {
   backdrop-filter: blur(18px);
   border: 1px solid var(--border);
   box-shadow: 0 24px 80px -48px rgba(15, 23, 42, 0.45);
+  overflow: hidden;
 }
 
 .prose-bimmer {
   color: var(--muted);
   line-height: 1.75;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .prose-bimmer h2,
@@ -89,6 +96,14 @@ a {
   padding-left: 1.5rem;
 }
 
+.prose-bimmer ul {
+  list-style-type: disc;
+}
+
+.prose-bimmer ol {
+  list-style-type: decimal;
+}
+
 .prose-bimmer img {
   max-width: 100%;
   border-radius: 1rem;
@@ -101,6 +116,6 @@ a {
 
 @media (min-width: 1024px) {
   .dashboard-grid {
-    grid-template-columns: minmax(0, 2fr) minmax(320px, 0.9fr);
+    grid-template-columns: minmax(0, 2fr) minmax(300px, 0.9fr);
   }
 }

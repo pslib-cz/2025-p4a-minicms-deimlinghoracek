@@ -69,7 +69,7 @@ export default async function HomePage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
-        <div className="surface-card rounded-[32px] p-8">
+        <div className="surface-card min-w-0 rounded-[32px] p-8">
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
@@ -86,7 +86,7 @@ export default async function HomePage() {
           {featuredArticles[0] ? <ArticleCard article={featuredArticles[0]} /> : null}
         </div>
 
-        <div className="surface-card rounded-[32px] p-8">
+        <div className="surface-card min-w-0 rounded-[32px] p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
             Modelové řady
           </p>

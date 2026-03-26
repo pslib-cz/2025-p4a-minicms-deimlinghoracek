@@ -139,7 +139,7 @@ export function DashboardArticles() {
                     className="rounded-[28px] border border-slate-200 bg-slate-50/80 p-5"
                   >
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                      <div className="space-y-3">
+                      <div className="min-w-0 flex-1 space-y-3">
                         <div className="flex flex-wrap items-center gap-2">
                           <Chip
                             color={
@@ -156,10 +156,10 @@ export function DashboardArticles() {
                           ))}
                         </div>
                         <div>
-                          <h2 className="text-xl font-black tracking-tight text-slate-950">
+                          <h2 className="truncate text-xl font-black tracking-tight text-slate-950">
                             {article.title}
                           </h2>
-                          <p className="text-sm text-slate-500">/{article.slug}</p>
+                          <p className="truncate text-sm text-slate-500">/{article.slug}</p>
                         </div>
                         <p className="text-sm text-slate-500">
                           Publikace:{' '}
