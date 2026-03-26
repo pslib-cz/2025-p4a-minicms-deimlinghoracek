@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --shell: #f5f7fb;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: #ffffff;
+  --border: rgba(15, 23, 42, 0.08);
+  --text: #020617;
+  --muted: #475569;
+  --muted-soft: #64748b;
+  --bmw-blue: #1c69d4;
+  --bmw-navy: #0f2341;
+  --bmw-red: #d22d23;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(28, 105, 212, 0.08), transparent 30%),
+    radial-gradient(circle at top right, rgba(210, 45, 35, 0.06), transparent 24%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  color: var(--text);
+  font-family:
+    "Segoe UI",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bg-shell {
+  background:
+    radial-gradient(circle at top left, rgba(28, 105, 212, 0.08), transparent 30%),
+    radial-gradient(circle at top right, rgba(210, 45, 35, 0.06), transparent 24%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+}
+
+.surface-card {
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 80px -48px rgba(15, 23, 42, 0.45);
+}
+
+.prose-bimmer {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.prose-bimmer h2,
+.prose-bimmer h3,
+.prose-bimmer h4 {
+  color: var(--text);
+  line-height: 1.2;
+  margin-top: 2rem;
+}
+
+.prose-bimmer h2 {
+  font-size: 1.8rem;
+}
+
+.prose-bimmer h3 {
+  font-size: 1.35rem;
+}
+
+.prose-bimmer p,
+.prose-bimmer ul,
+.prose-bimmer ol {
+  margin: 1rem 0;
+}
+
+.prose-bimmer ul,
+.prose-bimmer ol {
+  padding-left: 1.5rem;
+}
+
+.prose-bimmer img {
+  max-width: 100%;
+  border-radius: 1rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 0.9fr);
+  }
+}

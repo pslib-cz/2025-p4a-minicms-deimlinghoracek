@@ -1,0 +1,60 @@
+'use client'
+
+import { useState } from 'react'
+
+const storageKey = 'bimmerhub-analytics-consent'
+
+function getStoredDecision() {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  return window.localStorage.getItem(storageKey)
+}
+
+export function CookieConsent() {
+  const [decision, setDecision] = useState<string | null>(getStoredDecision)
+
+  function saveDecision(value: 'granted' | 'denied') {
+    window.localStorage.setItem(storageKey, value)
+    document.cookie = `analytics_consent=${value}; path=/; max-age=31536000; SameSite=Lax`
+    setDecision(value)
+    window.dispatchEvent(new Event('bimmerhub-consent-changed'))
+  }
+
+  if (decision) {
+    return null
+  }
+
+  return (
+    <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-3xl rounded-[28px] border border-slate-200 bg-white/95 p-5 shadow-2xl shadow-slate-300/40 backdrop-blur">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
+            Analytics consent
+          </p>
+          <p className="mt-2 text-sm leading-7 text-slate-600">
+            BimmerHub muze po souhlasu zapnout Google Analytics pro zaznamenani pageview.
+            Kdyz sledovani odmitnes, aplikace zustane plne funkcni a nic se nebude nacitat.
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={() => saveDecision('denied')}
+            className="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300"
+          >
+            Odmitnout
+          </button>
+          <button
+            type="button"
+            onClick={() => saveDecision('granted')}
+            className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--bmw-blue)]"
+          >
+            Povolit
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
