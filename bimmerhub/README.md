@@ -1,197 +1,222 @@
 # BimmerHub
 
-BimmerHub je vlastni mini CMS postaveny na Next.js App Routeru. Aplikace kombinuje verejnou magazinovou cast o BMW, interni dashboard pro spravu vlastnich clanku a vlastni API nad Prisma ORM.
-
-## Tema aplikace
-
-Obsah je zamereny na BMW:
-
-- recenze modelu a generaci
-- servisni navody
-- kupni pruvodce
-- editorial a galerie
-
-Kazdy prihlaseny uzivatel vidi a spravuje pouze svuj obsah.
+Mini CMS postaveny na Next.js 16 (App Router). Aplikace kombinuje verejnou magazinovou cast o BMW, interni dashboard pro spravu vlastnich clanku a vlastni API nad Prisma ORM.
 
 ## Pouzite technologie
 
-- Next.js 16 (App Router)
-- React 19
-- Prisma ORM bez Rust engine (`engineType = "client"`)
-- PostgreSQL
-- Auth.js / NextAuth credentials provider
-- NextUI pro dashboard
-- TipTap jako WYSIWYG editor
-- Zod pro validaci
+- **Next.js 16** (App Router, Server Components, Route Handlers)
+- **React 19**
+- **Prisma ORM** s PostgreSQL
+- **Auth.js / NextAuth** (credentials provider, JWT session)
+- **NextUI** (dashboard UI komponenty)
+- **TipTap** (WYSIWYG editor)
+- **Zod** (validace vstupu)
+- **Tailwind CSS 3**
 
 ## Datovy model
 
-### Povinne entity
+### Entity
 
-- `User`
-- `Article`
-- `Series`
-- `Tag`
+- **User** — uzivatele s autentizaci
+- **Article** — hlavni obsah (title, slug, description, content, status, publishDate, SEO pole)
+- **Series** — modelove rady BMW (1:N s Article)
+- **Tag** — stitky pro kategorizaci (N:M s Article)
 
-### Povinne vztahy
+### Vztahy
 
-- `User -> Article` jako `1:N`
-- `Series -> Article` jako `1:N`
-- `Article <-> Tag` jako `N:M`
-
-### Article pole
-
-- `title`
-- `slug`
-- `description`
-- `content`
-- `createdAt`
-- `updatedAt`
-- `publishDate`
-- `status`
-- `seoTitle`
-- `seoDescription`
-- `imageUrl`
+- `User -> Article` — 1:N (kazdy uzivatel spravuje vlastni clanky)
+- `Series -> Article` — 1:N (clanek patri do jedne modelove rady)
+- `Article <-> Tag` — N:M (clanek muze mit vice tagu)
 
 ## Funkce aplikace
 
-### Verejna cast
+### Verejna cast (Server Components)
 
-- homepage se zverejnenym BMW obsahem
-- seznam publikovanych clanku
-- detail clanku na dynamicke route `/articles/[slug]`
-- vyhledavani podle titulku, perexu a obsahu
-- filtrovani podle modelove rady a tagu
-- strankovani
-- `generateMetadata` pro listing i detail
-- OpenGraph metadata
-- canonical URL
-- `sitemap.xml`
-- `robots.txt`
-- `next/image`
+- Homepage s featured a nejnovejsimi clanky
+- Seznam publikovanych clanku s vyhledavanim, filtrovanim (serie, tagy) a strankovanim
+- Detail clanku na dynamicke route `/articles/[slug]`
+- Stranka modelovych rad `/series`
+- SEO: `generateMetadata`, OpenGraph, canonical URL, `sitemap.xml`, `robots.txt`
+- Optimalizace obrazku pres `next/image`
 
-### Dashboard
+### Dashboard (Client Components + Route Handlers)
 
-- pristup jen pro prihlasene uzivatele
-- dashboard postaveny na Client Components
-- nacitani i mutace pres vlastni Route Handlers
-- seznam vlastnich clanku se strankovanim
-- vytvoreni clanku
-- editace clanku
-- smazani clanku
-- prepinani `DRAFT / PUBLISHED`
-- prace s tagy a modelovymi radami
-- WYSIWYG editor
-- formulare s validaci
+- Pristup pouze pro prihlasene uzivatele
+- Seznam vlastnich clanku se strankovanim a filtrem statusu
+- Vytvoreni, editace a smazani clanku
+- Prepinani DRAFT / PUBLISHED
+- WYSIWYG editor (TipTap)
+- Prace s tagy a modelovymi radami
+- Formularova validace
 
-### API
+### API (Route Handlers)
 
-- `GET /api/dashboard/articles`
-- `POST /api/dashboard/articles`
-- `GET /api/dashboard/articles/[id]`
-- `PATCH /api/dashboard/articles/[id]`
-- `DELETE /api/dashboard/articles/[id]`
-- `GET /api/dashboard/meta`
+- `GET /api/dashboard/articles` — seznam clanku uzivatele
+- `POST /api/dashboard/articles` — vytvoreni clanku
+- `GET /api/dashboard/articles/[id]` — detail clanku
+- `PATCH /api/dashboard/articles/[id]` — editace clanku
+- `DELETE /api/dashboard/articles/[id]` — smazani clanku
+- `GET /api/dashboard/meta` — metadata (serie, tagy)
 
-API overuje:
+Vsechna API overuji session, vlastnictvi dat a validuji vstupy pres Zod.
 
-- aktivni session
-- vlastnictvi dat
-- validitu vstupu pres Zod
+### Analytika
 
-### Analytika a cookies
+- Google Analytics 4 (pres `NEXT_PUBLIC_GA_ID`)
+- Cookie consent banner — pri odmitnuti se GA skript nenacita
+- Aplikace funguje plne i bez souhlasu
 
-- priprava pro Google Analytics 4 pres `NEXT_PUBLIC_GA_ID`
-- cookie consent banner
-- pri odmitnuti se analytics skript nespousti a aplikace funguje dal
+## Demo prihlaseni
 
-## Spusteni lokalne
+- E-mail: `admin@bimmerhub.local`
+- Heslo: `password123`
 
-Projekt je ted pripraven primarne pro PostgreSQL, stejne jako produkcni nasazeni na Vercel.
+---
 
-1. Nainstaluj zavislosti:
+## Lokalni spusteni
+
+### Pozadavky
+
+- Node.js 18+
+- PostgreSQL databaze (lokalni nebo vzdalena)
+
+### Postup
 
 ```bash
+cd bimmerhub
 npm install
 ```
 
-2. Vytvor `.env` podle `.env.example`
+Vytvor `.env` podle `.env.example`:
 
-3. Proved migrace:
+```bash
+cp .env.example .env
+```
+
+Uprav `DATABASE_URL` v `.env` na svou PostgreSQL databazi.
+
+Proved migrace a naplneni demo daty:
 
 ```bash
 npx prisma migrate deploy
-```
-
-4. Napln demo data:
-
-```bash
 npx prisma db seed
 ```
 
-5. Spust aplikaci:
+Spust dev server:
 
 ```bash
 npm run dev
 ```
 
-## Demo prihlaseni
+Aplikace bezi na [http://localhost:3000](http://localhost:3000).
 
-- e-mail: `admin@bimmerhub.local`
-- heslo: `password123`
+---
 
-## Vercel deployment
+## Nasazeni na Vercel — krok za krokem
 
-Projekt je pripraven pro Vercel s PostgreSQL a Prisma bez Rust engine, takze je vhodny i pro ARM notebooky.
+### 1. Priprav repozitar
 
-### Co udelat na Vercelu
+Ujisti se, ze mas kod pushnuty na GitHub (nebo GitLab/Bitbucket).
 
-1. Pushni repozitar na GitHub.
-2. Ve Vercelu zvol `Add New Project`.
-3. Importuj repozitar `bimmerhub`.
-4. V casti Storage pripoj PostgreSQL databazi z Marketplace.
-5. V Project Settings -> Environment Variables nastav:
+### 2. Vytvor projekt na Vercelu
 
-- `DATABASE_URL`
-- `AUTH_SECRET`
-- `AUTH_TRUST_HOST=true`
-- `NEXT_PUBLIC_APP_URL`
-- `NEXT_PUBLIC_GA_ID` volitelne
+1. Jdi na [vercel.com](https://vercel.com) a prihlas se (pres GitHub ucet je nejsnazsi).
+2. Klikni **Add New... → Project**.
+3. Vyber svuj repozitar s BimmerHub.
+4. **DULEZITE:** Vercel nabidne Root Directory. Nastav ji na `bimmerhub` (protoze kod je v podadresari).
 
-6. V Build & Development Settings nastav Build Command na:
+### 3. Pripoj PostgreSQL databazi
+
+1. V Vercel dashboardu jdi do **Storage** (leva navigace).
+2. Klikni **Create Database** a zvol **Neon Postgres** (zdarma v Hobby planu).
+3. Pojmenuj databazi (napr. `bimmerhub-db`).
+4. Po vytvoreni klikni **Connect to Project** a vyber svuj BimmerHub projekt.
+5. Vercel automaticky nastavi `DATABASE_URL` a dalsi promenne.
+
+### 4. Nastav environment variables
+
+V **Project Settings → Environment Variables** pridej:
+
+| Promenna | Hodnota | Poznamka |
+|---|---|---|
+| `DATABASE_URL` | *(automaticky z kroku 3)* | Uz nastavena |
+| `AUTH_SECRET` | `openssl rand -base64 32` | Vygeneruj nahodny retezec |
+| `AUTH_TRUST_HOST` | `true` | Nutne pro Vercel |
+| `NEXT_PUBLIC_APP_URL` | `https://tvoje-domena.vercel.app` | Uprav po prvnim deployi |
+| `NEXT_PUBLIC_GA_ID` | `G-XXXXXXXXXX` | Volitelne — Google Analytics |
+
+### 5. Nastav Build Command
+
+V **Project Settings → General → Build & Development Settings**:
+
+- **Build Command:** `npm run vercel-build`
+- **Output Directory:** ponech prazdne (Next.js default)
+- **Install Command:** ponech prazdne (npm install default)
+
+### 6. Deployni
+
+Klikni **Deploy**. Vercel:
+
+1. Nainstaluje zavislosti (`npm install` → spusti `postinstall` → `prisma generate`)
+2. Spusti `vercel-build` → `prisma generate && prisma migrate deploy && next build`
+3. Migrace vytvori tabulky v PostgreSQL
+4. Next.js build zkompiluje aplikaci
+
+### 7. Naplneni demo daty (jednorazove)
+
+Po prvnim deployi muzes naplnit databazi demo daty. Mas dve moznosti:
+
+**Moznost A: Pres Vercel CLI (doporuceno)**
 
 ```bash
-npm run vercel-build
+npm i -g vercel
+cd bimmerhub
+vercel link          # propoj s projektem
+vercel env pull      # stahne .env.local s produkci DATABASE_URL
+npx prisma db seed   # spusti seed proti produkcni DB
 ```
 
-7. Deployni projekt.
+**Moznost B: Pres Vercel dashboard**
 
-### Co se stane pri buildu
+V Storage → tvoje databaze → Query tab muzes spustit SQL primo.
 
-- `postinstall` spusti `prisma generate`
-- `vercel-build` spusti `prisma migrate deploy`
-- nasledne probehne `next build`
+### 8. Over nasazeni
 
-### Po prvnim deployi
+1. Otevri URL projektu (napr. `https://bimmerhub-xxx.vercel.app`)
+2. Prihlaseni: `admin@bimmerhub.local` / `password123`
+3. Dashboard: vytvor, uprav, smazej clanek
+4. Verejna cast: over clanky, vyhledavani, filtry, strankovani
 
-Pokud chces do produkce demo obsah, pust seed jednorazove proti produkcni databazi:
+---
 
-```bash
-npx prisma db seed
-```
+## Po nasazeni
 
-To je lepsi delat rucne, ne pri kazdem buildu.
+### Google Search Console
 
-## Poznamka k ARM notebookum
+1. Jdi na [search.google.com/search-console](https://search.google.com/search-console)
+2. Pridej property s URL tvoji Vercel aplikace
+3. Overeni: pouzij HTML tag metodu nebo DNS (pokud mas vlastni domenu)
+4. Odesli sitemap: `https://tvoje-domena.vercel.app/sitemap.xml`
 
-Projekt pouziva Prisma bez Rust engine podle oficialni dokumentace Prisma, coz obchazi problem s nativnimi `query_engine` binarkami na Windows ARM. Pro PostgreSQL se pouziva `@prisma/adapter-pg`.
+### Bing Webmaster Tools
 
-Zdroj:
+1. Jdi na [bing.com/webmasters](https://www.bing.com/webmasters)
+2. Pridej site s URL aplikace
+3. Odesli sitemap
 
-- [No Rust engine](https://docs.prisma.io/docs/v6/orm/prisma-client/setup-and-configuration/no-rust-engine)
-- [Deploy to Vercel](https://docs.prisma.io/docs/v6/orm/prisma-client/deployment/serverless/deploy-to-vercel)
-- [Vercel Marketplace Postgres](https://vercel.com/docs/postgres)
+### Google Analytics
 
-## Lighthouse poznamky
+1. Vytvor GA4 property na [analytics.google.com](https://analytics.google.com)
+2. Zkopiruj Measurement ID (format `G-XXXXXXXXXX`)
+3. Pridej do Vercel environment variables jako `NEXT_PUBLIC_GA_ID`
+4. Redeployni aplikaci (Settings → Deployments → Redeploy)
 
-Poznamky k SEO a performance auditu jsou v souboru `LIGHTHOUSE_NOTES.md`.
+---
+
+## Pouzite Next.js funkce
+
+- `next/image` — optimalizace obrazku
+- `generateMetadata` — dynamicka metadata z obsahu
+- Dynamic routes — `/articles/[slug]`, `/dashboard/articles/[id]/edit`
+- `revalidatePath` — invalidace cache po mutacich
+- `sitemap.xml` a `robots.txt` — generovane z dat
