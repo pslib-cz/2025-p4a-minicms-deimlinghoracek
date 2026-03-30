@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArticleStatus } from '@prisma/client'
 import {
   Button,
   Card,
@@ -14,6 +13,13 @@ import {
   SelectItem,
   Spinner,
 } from '@nextui-org/react'
+
+type ArticleStatus = 'DRAFT' | 'PUBLISHED'
+
+const ARTICLE_STATUS = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+} as const
 
 type DashboardArticle = {
   id: string
@@ -115,8 +121,8 @@ export function DashboardArticles() {
               variant="bordered"
             >
               <SelectItem key="ALL">Vše</SelectItem>
-              <SelectItem key={ArticleStatus.DRAFT}>Draft</SelectItem>
-              <SelectItem key={ArticleStatus.PUBLISHED}>Published</SelectItem>
+              <SelectItem key={ARTICLE_STATUS.DRAFT}>Draft</SelectItem>
+              <SelectItem key={ARTICLE_STATUS.PUBLISHED}>Published</SelectItem>
             </Select>
             <Button as={Link} href="/dashboard/articles/new" color="primary">
               Nový článek
@@ -143,7 +149,7 @@ export function DashboardArticles() {
                         <div className="flex flex-wrap items-center gap-2">
                           <Chip
                             color={
-                              article.status === ArticleStatus.PUBLISHED ? 'primary' : 'default'
+                              article.status === ARTICLE_STATUS.PUBLISHED ? 'primary' : 'default'
                             }
                           >
                             {article.status}
@@ -177,9 +183,11 @@ export function DashboardArticles() {
                         >
                           Editovat
                         </Button>
-                        <Button as={Link} href={`/articles/${article.slug}`} variant="flat">
-                          Detail
-                        </Button>
+                        {article.status === ARTICLE_STATUS.PUBLISHED ? (
+                          <Button as={Link} href={`/articles/${article.slug}`} variant="flat">
+                            Detail
+                          </Button>
+                        ) : null}
                         <Button
                           color="danger"
                           variant="flat"

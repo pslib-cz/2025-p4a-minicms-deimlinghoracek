@@ -25,7 +25,11 @@ export function GoogleAnalytics() {
   const measurementId = process.env.NEXT_PUBLIC_GA_ID
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const [enabled, setEnabled] = useState(isAnalyticsEnabled)
+  const [enabled, setEnabled] = useState(false)
+
+  useEffect(() => {
+    setEnabled(isAnalyticsEnabled())
+  }, [])
 
   useEffect(() => {
     function handleStorage() {

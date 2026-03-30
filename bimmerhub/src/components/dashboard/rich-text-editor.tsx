@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 
@@ -19,13 +20,24 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
     editorProps: {
       attributes: {
         class:
-          'min-h-[280px] rounded-2xl border border-slate-200 bg-white px-4 py-4 focus:outline-none',
+          'prose-bimmer min-h-[280px] rounded-2xl border border-slate-200 bg-white px-4 py-4 focus:outline-none',
       },
     },
     onUpdate({ editor: currentEditor }) {
       onChange(currentEditor.getHTML())
     },
   })
+
+  useEffect(() => {
+    if (!editor) {
+      return
+    }
+
+    const currentHtml = editor.getHTML()
+    if (content !== currentHtml) {
+      editor.commands.setContent(content, false)
+    }
+  }, [content, editor])
 
   if (!editor) {
     return null

@@ -33,3 +33,17 @@ export const articlePayloadSchema = z.object({
 })
 
 export type ArticlePayload = z.infer<typeof articlePayloadSchema>
+
+export const registerPayloadSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2)
+    .max(80)
+    .optional()
+    .transform((value) => value || null),
+  email: z.string().trim().toLowerCase().email(),
+  password: z.string().min(8).max(72),
+})
+
+export type RegisterPayload = z.infer<typeof registerPayloadSchema>

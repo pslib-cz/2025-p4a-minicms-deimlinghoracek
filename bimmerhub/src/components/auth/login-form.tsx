@@ -10,6 +10,8 @@ export function LoginForm() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
 
+  const [mode, setMode] = useState<'login' | 'register'>('login')
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -19,6 +21,37 @@ export function LoginForm() {
     event.preventDefault()
     setLoading(true)
     setError('')
+
+    if (mode === 'register') {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      })
+
+      if (!response.ok) {
+        setLoading(false)
+
+        if (response.status === 409) {
+          setError('Účet s tímto e-mailem už existuje.')
+          return
+        }
+
+        if (response.status === 400) {
+          setError('Zkontroluj zadané údaje. Heslo musí mít alespoň 8 znaků.')
+          return
+        }
+
+        setError('Registraci se nepodařilo dokončit. Zkus to prosím znovu.')
+        return
+      }
+    }
 
     const result = await signIn('credentials', {
       email,
@@ -42,19 +75,52 @@ export function LoginForm() {
     <div className="flex min-h-[70vh] items-center justify-center py-10">
       <Card className="w-full max-w-lg rounded-[32px] border border-slate-200 bg-white/90 p-4 shadow-xl shadow-slate-200/60">
         <CardHeader className="flex flex-col items-start gap-3 px-6 pt-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-            Přihlášení
-          </p>
+          <div className="flex gap-2 rounded-full border border-slate-200 bg-slate-100 p-1">
+            <Button
+              size="sm"
+              radius="full"
+              color={mode === 'login' ? 'primary' : 'default'}
+              variant={mode === 'login' ? 'solid' : 'light'}
+              onPress={() => {
+                setMode('login')
+                setError('')
+              }}
+            >
+              Přihlášení
+            </Button>
+            <Button
+              size="sm"
+              radius="full"
+              color={mode === 'register' ? 'primary' : 'default'}
+              variant={mode === 'register' ? 'solid' : 'light'}
+              onPress={() => {
+                setMode('register')
+                setError('')
+              }}
+            >
+              Registrace
+            </Button>
+          </div>
           <h1 className="text-3xl font-black tracking-tight text-slate-950">
-            Vstup do dashboardu
+            {mode === 'login' ? 'Vstup do dashboardu' : 'Vytvoření účtu'}
           </h1>
           <p className="text-sm leading-7 text-slate-600">
-            Zadej své přihlašovací údaje. Dashboard i API jsou přístupné
-            pouze po ověření session.
+            {mode === 'login'
+              ? 'Zadej své přihlašovací údaje. Dashboard i API jsou přístupné pouze po ověření session.'
+              : 'Založ si účet a po registraci budeš automaticky přihlášen do dashboardu.'}
           </p>
         </CardHeader>
         <CardBody className="px-6 pb-6">
           <form className="space-y-5" onSubmit={handleSubmit}>
+            {mode === 'register' ? (
+              <Input
+                label="Jméno"
+                value={name}
+                onValueChange={setName}
+                variant="bordered"
+                description="Volitelné, můžeš vyplnit i později."
+              />
+            ) : null}
             <Input
               label="E-mail"
               type="email"
@@ -73,7 +139,7 @@ export function LoginForm() {
             />
             {error ? <p className="text-sm font-medium text-danger">{error}</p> : null}
             <Button color="primary" type="submit" isLoading={loading} className="w-full">
-              Přihlásit se
+              {mode === 'login' ? 'Přihlásit se' : 'Registrovat se'}
             </Button>
           </form>
         </CardBody>

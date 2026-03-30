@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const storageKey = 'bimmerhub-analytics-consent'
 
@@ -13,7 +13,13 @@ function getStoredDecision() {
 }
 
 export function CookieConsent() {
-  const [decision, setDecision] = useState<string | null>(getStoredDecision)
+  const [hydrated, setHydrated] = useState(false)
+  const [decision, setDecision] = useState<string | null>(null)
+
+  useEffect(() => {
+    setDecision(getStoredDecision())
+    setHydrated(true)
+  }, [])
 
   function saveDecision(value: 'granted' | 'denied') {
     window.localStorage.setItem(storageKey, value)
@@ -22,7 +28,7 @@ export function CookieConsent() {
     window.dispatchEvent(new Event('bimmerhub-consent-changed'))
   }
 
-  if (decision) {
+  if (!hydrated || decision) {
     return null
   }
 
