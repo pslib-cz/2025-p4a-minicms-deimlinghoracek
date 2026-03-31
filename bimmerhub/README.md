@@ -143,7 +143,7 @@ V **Project Settings → Environment Variables** pridej:
 | `AUTH_SECRET` | `openssl rand -base64 32` | Vygeneruj nahodny retezec |
 | `AUTH_TRUST_HOST` | `true` | Nutne pro Vercel |
 | `NEXT_PUBLIC_APP_URL` | `https://tvoje-domena.vercel.app` | Uprav po prvnim deployi |
-| `NEXT_PUBLIC_GA_ID` | `G-XXXXXXXXXX` | Volitelne — Google Analytics |
+| `NEXT_PUBLIC_GA_ID` | `G-W75TCTL3QS` | Volitelne — Google Analytics |
 
 ### 5. Nastav Build Command
 
