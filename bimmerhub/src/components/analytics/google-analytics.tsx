@@ -2,7 +2,7 @@
 
 import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 declare global {
   interface Window {
@@ -26,6 +26,7 @@ export function GoogleAnalytics() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [enabled, setEnabled] = useState(false)
+  const skipFirst = useRef(true)
 
   useEffect(() => {
     setEnabled(isAnalyticsEnabled())
@@ -46,16 +47,23 @@ export function GoogleAnalytics() {
   }, [])
 
   useEffect(() => {
-    if (!enabled || !measurementId || !window.gtag) {
+    if (!enabled || !measurementId) {
+      return
+    }
+
+    // Skip the first run — the inline gtag script handles the initial page view.
+    if (skipFirst.current) {
+      skipFirst.current = false
       return
     }
 
     const search = searchParams.toString()
     const pagePath = search ? `${pathname}?${search}` : pathname
 
-    window.gtag('config', measurementId, {
-      page_path: pagePath,
-    })
+    // Push directly to dataLayer so it works even if gtag.js hasn't finished
+    // loading yet (e.g. user navigates immediately after accepting consent).
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push(['config', measurementId, { page_path: pagePath }])
   }, [enabled, measurementId, pathname, searchParams])
 
   if (!enabled || !measurementId) {
