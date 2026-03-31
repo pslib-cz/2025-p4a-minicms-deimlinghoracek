@@ -60,10 +60,9 @@ export function GoogleAnalytics() {
     const search = searchParams.toString()
     const pagePath = search ? `${pathname}?${search}` : pathname
 
-    // Push directly to dataLayer so it works even if gtag.js hasn't finished
-    // loading yet (e.g. user navigates immediately after accepting consent).
-    window.dataLayer = window.dataLayer || []
-    window.dataLayer.push(['config', measurementId, { page_path: pagePath }])
+    if (window.gtag) {
+      window.gtag('config', measurementId, { page_path: pagePath })
+    }
   }, [enabled, measurementId, pathname, searchParams])
 
   if (!enabled || !measurementId) {
