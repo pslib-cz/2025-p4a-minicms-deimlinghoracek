@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArticleStatus } from '@prisma/client'
@@ -6,6 +7,12 @@ import { ArticleCard } from '@/components/public/article-card'
 import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+}
 
 export default async function HomePage() {
   const [allPublished, series] = await Promise.all([

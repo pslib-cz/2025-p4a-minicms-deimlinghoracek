@@ -1,6 +1,11 @@
+import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
 import { LoginForm } from '@/components/auth/login-form'
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+}
 
 function LoginPageFallback() {
   return (

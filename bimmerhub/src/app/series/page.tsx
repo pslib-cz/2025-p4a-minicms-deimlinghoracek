@@ -7,6 +7,9 @@ import { prisma } from '@/lib/prisma'
 export const metadata: Metadata = {
   title: 'Modelové řady BMW',
   description: 'Přehled modelových řad BMW použitých pro kategorizaci publikovaného obsahu.',
+  alternates: {
+    canonical: '/series',
+  },
 }
 
 export const dynamic = 'force-dynamic'
